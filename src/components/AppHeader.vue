@@ -2,11 +2,8 @@
 export default {
 }
 </script>
-<template lang="">
+<template>
     <div>
-        ciao
     </div>
 </template>
-<style lang="">
-
-</style>
+<style lang="scss" scoped></style>
