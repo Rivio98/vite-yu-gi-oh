@@ -1,6 +1,11 @@
 <script>
+import { cards } from "../store.js";
 export default {
-
+    data() {
+        return {
+            cards
+        }
+    },
 }
 </script>
 <template>
@@ -16,22 +21,28 @@ export default {
                             <option value="3">Three</option>
                         </select>
                     </div>
-                    <div class="col-12 mt-4">
+                </div>
+                <div class="container-white p-3 mt-3">
+                    <div class="col-12">
                         <div class="content">
-                            <div class="square p-5">
-                                <div class="top bg-dark p-2">
-                                    <h2 class="text-white">Found {{ counter }} cards</h2>
-                                </div>
-                                <div class="card" style="width: 10rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">Card title</h5>
-                                        <p class="card-text text-center">alien</p>
-                                    </div>
+                            <div class="top bg-dark p-2">
+                                <h2 class="text-white">Found {{ cards.cardsArray.length }} cards</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cols-5">
+                        <div class="col" v-for="card in cards.cardsArray" :key="card.id">
+                            <div class="card" style="width: 10rem;">
+                                <img :src="card.card_images[0].image_url" class="card-img-top" alt="Card image">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ card.name }}</h5>
+                                    <p class="card-text text-center">{{ card.archetype }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -45,10 +56,12 @@ main {
         width: 150px;
     }
 
-    .square {
+    .container-white {
         background-color: #fff;
-        width: 1000px;
-        height: 1000px;
+
+        img {
+            width: 100%;
+        }
 
         .card-body {
             background-color: #D48F38;

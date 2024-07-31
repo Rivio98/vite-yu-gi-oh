@@ -1,12 +1,27 @@
-<script lang="">
+<script>
+import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { cards } from './store.js';
 export default {
-  components:{
+  data() {
+    return {
+      cards,
+    }
+  },
+  components: {
     AppHeader,
     AppMain,
-    cards
+  },
+  created() {
+    this.getCards();
+  },
+  methods: {
+    getCards() {
+      axios.get(cards.apiUrl).then((result) => {
+        cards.cardsArray = result.data.data
+      })
+    }
   }
 }
 </script>
