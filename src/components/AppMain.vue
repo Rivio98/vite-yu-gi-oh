@@ -1,4 +1,5 @@
 <script>
+import { Value } from "sass";
 import { cards } from "../store.js";
 export default {
     data() {
