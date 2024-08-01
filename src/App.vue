@@ -14,13 +14,19 @@ export default {
     AppMain,
   },
   created() {
-    this.getCards();
+    this.getCards(),
+      this.getArchetypes()
   },
   methods: {
     getCards() {
       axios.get(cards.apiUrl).then((result) => {
         cards.cardsArray = result.data.data
-      })
+      });
+    },
+    getArchetypes() {
+      axios.get(cards.apiArchetypes).then((result) => {
+        cards.archetypesArray = result.data
+      });
     }
   }
 }

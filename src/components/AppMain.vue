@@ -15,14 +15,11 @@ export default {
                 <div class="col-12 pt-4">
                     <div class="content ps-3">
                         <select class="form-select">
-                            <option selected>Alien</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option>Alien</option>
                         </select>
                     </div>
                 </div>
-                <div class="container-white p-3 mt-3">
+                <div class="container-white p-5 mt-3">
                     <div class="col-12">
                         <div class="content">
                             <div class="top bg-dark p-2">
@@ -30,14 +27,14 @@ export default {
                             </div>
                         </div>
                     </div>
-
                     <div class="row row-cols-5">
-                        <div class="col" v-for="card in cards.cardsArray" :key="card.id">
-                            <div class="card" style="width: 10rem;">
+                        <div class="col mt-3 d-flex justify-content-center" v-for="card in cards.cardsArray"
+                            :key="card.id">
+                            <div class="card w-100">
                                 <img :src="card.card_images[0].image_url" class="card-img-top" alt="Card image">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">{{ card.name }}</h5>
-                                    <p class="card-text text-center">{{ card.archetype }}</p>
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <p class="card-title text-center">{{ card.name }}</p>
+                                    <p class="card-text text-center">Type: {{ card.race }}</p>
                                 </div>
                             </div>
                         </div>
@@ -58,6 +55,7 @@ main {
 
     .container-white {
         background-color: #fff;
+        margin-bottom: 100px;
 
         img {
             width: 100%;
@@ -65,6 +63,10 @@ main {
 
         .card-body {
             background-color: #D48F38;
+            min-height: 120px;
+            padding: 10px 0px 10px 0px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
         }
     }
 
