@@ -1,6 +1,6 @@
 <script>
-import { Value } from "sass";
 import { cards } from "../store.js";
+
 export default {
     data() {
         return {
@@ -9,16 +9,18 @@ export default {
     },
 }
 </script>
+
 <template>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-4">
                     <div class="content ps-3">
-                        <select class="form-select">
-                            <option>Seleziona Archetipo</option>
-                            <option :value="archetype.archetype_name"
-                                v-for="(archetype, index) in cards.archetypesArray">{{ archetype }} </option>
+                        <select class="form-select" @change="$emit('filter_cards')" v-model="cards.archetype_search">
+                            <option value="">Seleziona Archetipo</option>
+                            <option :value="archetype" v-for="(archetype, index) in cards.archetypesArray" :key="index">
+                                {{ archetype }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -42,12 +44,12 @@ export default {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </main>
 </template>
+
 <style lang="scss" scoped>
 main {
     background-color: #D48F38;
@@ -72,6 +74,5 @@ main {
             border-bottom-left-radius: 5px;
         }
     }
-
 }
 </style>

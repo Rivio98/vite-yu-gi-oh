@@ -3,6 +3,7 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { cards } from './store.js';
+
 export default {
   data() {
     return {
@@ -14,20 +15,23 @@ export default {
     AppMain,
   },
   created() {
-    this.getCards(),
-      this.getArchetypes()
+    this.getCards();
+    this.getArchetypes();
   },
   methods: {
     getCards() {
-      axios.get(cards.apiUrl).then((result) => {
-        cards.cardsArray = result.data.data
+      const url = cards.archetype_search
+        ? `${cards.apiUrl}&archetype=${cards.archetype_search}&num=20`
+        : `${cards.apiUrl}&num=20`;
+      axios.get(url).then((response) => {
+        cards.cardsArray = response.data.data;
       });
     },
     getArchetypes() {
       axios.get(cards.apiArchetypes).then((result) => {
         for (let i = 0; i < 10; i++) {
-          let k = Math.floor(Math.random() * result.data.length + 1)
-          cards.archetypesArray.push(result.data[k].archetype_name)
+          let k = Math.floor(Math.random() * result.data.length);
+          cards.archetypesArray.push(result.data[k].archetype_name);
         }
       });
     }
@@ -37,7 +41,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain />
+  <AppMain @filter_cards="getCards" />
 </template>
 
 <style lang="scss">
