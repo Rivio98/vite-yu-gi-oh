@@ -16,7 +16,9 @@ export default {
                 <div class="col-12 pt-4">
                     <div class="content ps-3">
                         <select class="form-select">
-                            <option>Alien</option>
+                            <option>Seleziona Archetipo</option>
+                            <option :value="archetype.archetype_name"
+                                v-for="(archetype, index) in cards.archetypesArray">{{ archetype }} </option>
                         </select>
                     </div>
                 </div>
